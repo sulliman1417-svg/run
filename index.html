@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>نظام التخطيط التشغيلي المؤسسي</title>
+</head>
+<body>
+    <div id="app" class="flex h-screen bg-slate-100 overflow-hidden font-tajawal">
+        <!-- Sidebar Input Form -->
+        <aside class="w-80 bg-white border-l border-slate-200 flex flex-col shadow-xl z-20 overflow-hidden">
+            <div class="p-5 border-b border-slate-200 bg-gradient-to-br from-moeDarkBlue to-moeGreen text-white flex flex-col items-center shrink-0">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png" alt="Logo" class="h-16 brightness-0 invert mb-2">
+                <h1 class="font-cairo font-black text-lg text-center">نظام التخطيط التشغيلي</h1>
+            </div>
+            
+            <div class="flex-1 p-5 overflow-y-auto space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">مفتاح API (Gemini)</label>
+                    <input type="password" id="input-api-key" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none" placeholder="AIzaSy...">
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">اسم المدرسة</label>
+                    <input type="text" id="input-school-name" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none" value="مدرسة الفكر الأهلية">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">إدارة التعليم</label>
+                    <input type="text" id="input-edu-dept" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none" value="إدارة تعليم الرياض">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">مدير المدرسة</label>
+                    <input type="text" id="input-director" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none" value="أحمد عبدالله">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">معد الخطة</label>
+                    <input type="text" id="input-prepared-by" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none" value="محمد صالح">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-moeDarkBlue mb-1 font-cairo">نبذة وموجهات للذكاء الاصطناعي</label>
+                    <textarea id="input-ai-prompt" rows="4" class="w-full border border-slate-300 rounded p-2 text-sm focus:border-moeGreen focus:ring-1 focus:ring-moeGreen outline-none resize-none" placeholder="اكتب هنا التحديات الرئيسية، نسب النجاح السابقة، أو أي توجيهات خاصة بالخطة..."></textarea>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-slate-200 bg-slate-50 shrink-0">
+                <button id="btn-generate" class="w-full bg-moeDarkBlue hover:bg-moeGreen text-white rounded-lg py-3 font-cairo font-black text-lg transition shadow-md flex justify-center items-center gap-2">
+                    <span id="generate-icon">✨</span>
+                    <span id="generate-text">توليد الخطة التشغيلية</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col relative h-full overflow-hidden">
+            <!-- Topbar -->
+            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10 shrink-0">
+                <h2 class="font-cairo font-bold text-xl text-moeDarkBlue">معاينة الخطة</h2>
+                <div class="flex items-center gap-3">
+                    <button id="btn-print" class="bg-moeGreen hover:bg-emerald-600 text-white px-4 py-2 rounded-lg font-cairo font-bold transition flex items-center gap-2 shadow-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        طباعة / حفظ PDF
+                    </button>
+                </div>
+            </header>
+
+            <!-- Workspace Area -->
+            <div class="flex-1 overflow-auto p-8 bg-slate-200/50" id="workspace-scroll">
+                <div id="print-container" class="flex flex-col items-center gap-6 pb-20">
+                    <!-- Pages Rendered Here -->
+                    <div class="text-center mt-20 text-slate-400 font-cairo font-bold">
+                        الرجاء إدخال البيانات والضغط على "توليد الخطة التشغيلية"
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
